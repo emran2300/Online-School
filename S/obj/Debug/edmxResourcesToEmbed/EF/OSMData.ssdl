@@ -13,6 +13,18 @@
     <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Type" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
+  <EntityType Name="Courses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="Capacity" Type="int" Nullable="false" />
+    <Property Name="Cost" Type="float" Nullable="false" />
+    <Property Name="Enroll" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'OnlineEdu.dbo.LoginMatch' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="LoginMatch">
@@ -55,6 +67,7 @@ warning 6002: The table/view 'OnlineEdu.dbo.LoginMatch' does not have a primary 
   </EntityType>
   <EntityContainer Name="OnlineEduModelStoreContainer">
     <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LoginMatch" EntityType="Self.LoginMatch" store:Type="Tables" store:Schema="dbo">

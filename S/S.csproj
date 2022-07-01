@@ -136,31 +136,34 @@
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="EF\Admin.cs">
-      <DependentUpon>OSMData.tt</DependentUpon>
+      <DependentUpon>OSMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Cours.cs">
+      <DependentUpon>OSMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\LoginMatch.cs">
-      <DependentUpon>OSMData.tt</DependentUpon>
+      <DependentUpon>OSMModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF\OSMData.Context.cs">
+    <Compile Include="EF\OSMModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OSMData.Context.tt</DependentUpon>
+      <DependentUpon>OSMModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF\OSMData.cs">
+    <Compile Include="EF\OSMModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OSMData.tt</DependentUpon>
+      <DependentUpon>OSMModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF\OSMData.Designer.cs">
+    <Compile Include="EF\OSMModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>OSMData.edmx</DependentUpon>
+      <DependentUpon>OSMModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="EF\Student.cs">
-      <DependentUpon>OSMData.tt</DependentUpon>
+      <DependentUpon>OSMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\Teacher.cs">
-      <DependentUpon>OSMData.tt</DependentUpon>
+      <DependentUpon>OSMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -192,6 +195,7 @@
     <Content Include="assets2\bootstrap\dist\js\bootstrap.esm.min.js" />
     <Content Include="assets2\bootstrap\dist\js\bootstrap.js" />
     <Content Include="assets2\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="assets2\css\AddCourse.css" />
     <Content Include="assets2\css\icons\font-awesome\css\fa-brands.css" />
     <Content Include="assets2\css\icons\font-awesome\css\fa-brands.min.css" />
     <Content Include="assets2\css\icons\font-awesome\css\fa-regular.css" />
@@ -354,15 +358,15 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\BootstrapTheme.css" />
-    <Content Include="EF\OSMData.Context.tt">
+    <Content Include="EF\OSMModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OSMData.edmx</DependentUpon>
-      <LastGenOutput>OSMData.Context.cs</LastGenOutput>
+      <DependentUpon>OSMModel.edmx</DependentUpon>
+      <LastGenOutput>OSMModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="EF\OSMData.tt">
+    <Content Include="EF\OSMModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>OSMData.edmx</DependentUpon>
-      <LastGenOutput>OSMData.cs</LastGenOutput>
+      <DependentUpon>OSMModel.edmx</DependentUpon>
+      <LastGenOutput>OSMModel.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -382,13 +386,6 @@
     <Content Include="assets\webfonts\fa-solid-900.ttf" />
     <Content Include="assets\webfonts\fa-solid-900.woff" />
     <Content Include="assets\webfonts\fa-solid-900.woff2" />
-    <EntityDeploy Include="EF\OSMData.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>OSMData.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="EF\OSMData.edmx.diagram">
-      <DependentUpon>OSMData.edmx</DependentUpon>
-    </Content>
     <Content Include="assets2\bootstrap\dist\.DS_Store" />
     <Content Include="assets2\bootstrap\dist\css\bootstrap-grid.css.map" />
     <Content Include="assets2\bootstrap\dist\css\bootstrap-grid.min.css.map" />
@@ -648,6 +645,16 @@
     <Content Include="assets2\scss\widgets\profile.scss" />
     <Content Include="assets2\scss\widgets\steamline.scss" />
     <Content Include="assets2\scss\widgets\widgets.scss" />
+    <Content Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </Content>
+    <EntityDeploy Include="EF\OSMModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OSMModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="EF\OSMModel.edmx.diagram">
+      <DependentUpon>OSMModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -675,7 +682,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Courses.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Registation\TeacherRegistation.cshtml" />
     <Content Include="Views\Registation\StudentRegistation.cshtml" />
     <Content Include="Views\Registation\LoginRegistation.cshtml" />
@@ -685,6 +691,16 @@
     <Content Include="Views\Teacher\Index.cshtml" />
     <Content Include="Views\Teacher\Profile.cshtml" />
     <Content Include="Views\Shared\_LayoutTeacher.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Admin\Profile.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\TeacherList.cshtml" />
+    <Content Include="Views\Admin\StudentList.cshtml" />
+    <Content Include="Views\Admin\CourseList.cshtml" />
+    <Content Include="Views\R.cshtml" />
+    <Content Include="Views\Admin\AddCourse.cshtml" />
+    <Content Include="Views\Teacher\CourseList.cshtml" />
+    <Content Include="Views\Teacher\AddCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

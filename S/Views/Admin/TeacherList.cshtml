@@ -1,0 +1,94 @@
+﻿@model List<S.EF.Teacher>
+@{
+    ViewBag.Title = "TeacherList";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">Teacher List Table</h4>
+            </div>
+
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="white-box">
+                    <h3 class="box-title">Teacher Table</h3>
+                    <div class="table-responsive">
+                        <table class="table text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="border-top-0">Name</th>
+                                    <th class="border-top-0">Address</th>
+                                    <th class="border-top-0">Phone</th>
+                                    <th class="border-top-0">Bio</th>
+                                    <th class="border-top-0">Expart Area</th>
+                                    <th class="border-top-0">Status</th>
+                                    <th class="border-top-0">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var t in Model)
+                                {
+                                    <tr>
+                                        <td>@t.Name</td>
+                                        <td>@t.Address</td>
+                                        <td>@t.Phone</td>
+                                        <td>@t.Bio</td>
+                                        <td>@t.ExpartArea</td>
+                                        <td>@t.AccountStatus</td>
+                                        <td><a class="btn btn-info" href="">Edit</a> <a class="btn btn-danger" href="">Delete</a></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+        © 2022 Online Education System.
+        All rights reserved. Design
+        by <a href="https://www.facebook.com/emranmho/" target="_blank">Emran</a>
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>
+

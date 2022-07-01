@@ -14,6 +14,12 @@ namespace S.EF
     
     public partial class Teacher
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Teacher()
+        {
+            this.Courses = new HashSet<Cours>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
@@ -24,5 +30,8 @@ namespace S.EF
         public string Email { get; set; }
         public string Password { get; set; }
         public string Type { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cours> Courses { get; set; }
     }
 }

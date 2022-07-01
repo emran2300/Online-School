@@ -1,7 +1,4 @@
-﻿@*<h1>@Model.Name</h1>*@
-@*<a href="Student/Logout">Logout</a>*@
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html dir="ltr" lang="en">
 
 <head>
@@ -14,7 +11,7 @@
     <meta name="description"
           content="Ample Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
     <meta name="robots" content="noindex,nofollow">
-    <title>Student Dashbad Panel</title>
+    <title>Teacher Dashbad Panel</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/ample-admin-lite/" />
     <!-- Favicon icon -->
     <link rel="icon" type="/assets2/image/png" sizes="16x16" href="/assets2/plugins/images/favicon.png">
@@ -96,9 +93,7 @@
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li style="margin-right:50px">
-                            <a class="btn btn-light" href="#">
-                                Logout
-                            </a>
+                            @Html.ActionLink("Log Out", "Logout", "Teacher", new { @class = "btn btn-light" })
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
@@ -121,25 +116,13 @@
                     <ul id="sidebarnav">
                         <!-- User Profile-->
                         <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="Teacher/Index"
-                               aria-expanded="false">
-                                <i class="far fa-clock" aria-hidden="true"></i>
-                                <span class="hide-menu">Dashboard</span>
-                            </a>
+                            @Html.ActionLink("Dashboard", "Index", "Teacher", new { @class = "sidebar-link waves-effect waves-dark sidebar-link" })
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="Teacher/Profile"
-                               aria-expanded="false">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                <span class="hide-menu">Profile</span>
-                            </a>
+                            @Html.ActionLink("Profile", "Profile", "Teacher", new { @class = "sidebar-link waves-effect waves-dark sidebar-link" })
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="basic-table.html"
-                               aria-expanded="false">
-                                <i class="fa fa-table" aria-hidden="true"></i>
-                                <span class="hide-menu">Basic Table</span>
-                            </a>
+                            @Html.ActionLink("Course List", "CourseList", "Teacher", new { @class = "sidebar-link waves-effect waves-dark sidebar-link" })
                         </li>
 
                     </ul>

@@ -46,6 +46,7 @@
     <EntitySet Name="Students" EntityType="Self.Student" />
     <EntitySet Name="Teachers" EntityType="Self.Teacher" />
     <EntitySet Name="LoginMatches" EntityType="OnlineEduModel.LoginMatch" />
+    <EntitySet Name="Courses" EntityType="OnlineEduModel.Cours" />
   </EntityContainer>
   <EntityType Name="LoginMatch">
     <Key>
@@ -56,5 +57,17 @@
     <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Cours">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Capacity" Type="Int32" Nullable="false" />
+    <Property Name="Cost" Type="Double" Nullable="false" />
+    <Property Name="Enroll" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Int32" />
   </EntityType>
 </Schema>

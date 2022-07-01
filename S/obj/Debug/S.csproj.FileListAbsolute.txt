@@ -51,6 +51,8 @@ D:\Code Write\S\S\bin\roslyn\vbc.rsp
 D:\Code Write\S\S\bin\roslyn\VBCSCompiler.exe
 D:\Code Write\S\S\bin\roslyn\VBCSCompiler.exe.config
 D:\Code Write\S\S\bin\Antlr3.Runtime.dll
+D:\Code Write\S\S\bin\EntityFramework.dll
+D:\Code Write\S\S\bin\EntityFramework.SqlServer.dll
 D:\Code Write\S\S\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\Code Write\S\S\bin\Microsoft.Web.Infrastructure.dll
 D:\Code Write\S\S\bin\Newtonsoft.Json.dll
@@ -62,6 +64,8 @@ D:\Code Write\S\S\bin\System.Web.WebPages.Deployment.dll
 D:\Code Write\S\S\bin\System.Web.WebPages.dll
 D:\Code Write\S\S\bin\System.Web.WebPages.Razor.dll
 D:\Code Write\S\S\bin\WebGrease.dll
+D:\Code Write\S\S\bin\EntityFramework.xml
+D:\Code Write\S\S\bin\EntityFramework.SqlServer.xml
 D:\Code Write\S\S\bin\System.Web.Helpers.xml
 D:\Code Write\S\S\bin\System.Web.Mvc.xml
 D:\Code Write\S\S\bin\System.Web.Optimization.xml
@@ -77,7 +81,3 @@ D:\Code Write\S\S\obj\Debug\S.csproj.CoreCompileInputs.cache
 D:\Code Write\S\S\obj\Debug\S.csproj.CopyComplete
 D:\Code Write\S\S\obj\Debug\S.dll
 D:\Code Write\S\S\obj\Debug\S.pdb
-D:\Code Write\S\S\bin\EntityFramework.dll
-D:\Code Write\S\S\bin\EntityFramework.SqlServer.dll
-D:\Code Write\S\S\bin\EntityFramework.xml
-D:\Code Write\S\S\bin\EntityFramework.SqlServer.xml
