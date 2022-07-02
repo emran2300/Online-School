@@ -11,15 +11,28 @@ namespace S.EF
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Student
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Please enter Your Name")]
+        [StringLength(20, ErrorMessage = "Only 20 character are allowed")]
         public string Name { get; set; }
+        [Required]
         public string Address { get; set; }
+        [Required]
         public string Phone { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}")]
+        [Required(ErrorMessage = "Please enter Date of Birth")]
         public System.DateTime DateOfBirth { get; set; }
+        [EmailAddress]
         public string Email { get; set; }
+
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Please enter password")]
         public string Password { get; set; }
         public string Type { get; set; }
     }
