@@ -11,6 +11,9 @@
         <EntityTypeShape EntityType="OnlineEduModel.Teacher" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineEduModel.LoginMatch" Width="1.5" PointX="4.875" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="OnlineEduModel.FK_Courses_Teachers" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="OnlineEduModel.CourseStudentMap" Width="1.5" PointX="10.625" PointY="1.625" />
+        <AssociationConnector Association="OnlineEduModel.FK_CourseStudentMaps_Courses" />
+        <AssociationConnector Association="OnlineEduModel.FK_CourseStudentMaps_Students1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -26,6 +26,7 @@
     <Property Name="Status" Type="Int32" />
     <Property Name="Teacher_Id" Type="Int32" />
     <NavigationProperty Name="Teacher" Relationship="Self.FK_Courses_Teachers" FromRole="Courses" ToRole="Teachers" />
+    <NavigationProperty Name="CourseStudentMaps" Relationship="OnlineEduModel.FK_CourseStudentMaps_Courses" FromRole="Cours" ToRole="CourseStudentMap" />
   </EntityType>
   <EntityType Name="Student">
     <Key>
@@ -39,6 +40,7 @@
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CourseStudentMaps" Relationship="OnlineEduModel.FK_CourseStudentMaps_Students1" FromRole="Student" ToRole="CourseStudentMap" />
   </EntityType>
   <EntityType Name="Teacher">
     <Key>
@@ -90,5 +92,50 @@
       <End Role="Teachers" EntitySet="Teachers" />
       <End Role="Courses" EntitySet="Courses" />
     </AssociationSet>
+    <EntitySet Name="CourseStudentMaps" EntityType="OnlineEduModel.CourseStudentMap" />
+    <AssociationSet Name="FK_CourseStudentMaps_Courses" Association="OnlineEduModel.FK_CourseStudentMaps_Courses">
+      <End Role="Cours" EntitySet="Courses" />
+      <End Role="CourseStudentMap" EntitySet="CourseStudentMaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseStudentMaps_Students1" Association="OnlineEduModel.FK_CourseStudentMaps_Students1">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="CourseStudentMap" EntitySet="CourseStudentMaps" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="CourseStudentMap">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseId" Type="Int32" />
+    <Property Name="StudentId" Type="Int32" />
+    <NavigationProperty Name="Cours" Relationship="OnlineEduModel.FK_CourseStudentMaps_Courses" FromRole="CourseStudentMap" ToRole="Cours" />
+    <NavigationProperty Name="Student" Relationship="OnlineEduModel.FK_CourseStudentMaps_Students1" FromRole="CourseStudentMap" ToRole="Student" />
+  </EntityType>
+  <Association Name="FK_CourseStudentMaps_Courses">
+    <End Type="OnlineEduModel.Cours" Role="Cours" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="OnlineEduModel.CourseStudentMap" Role="CourseStudentMap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cours">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CourseStudentMap">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseStudentMaps_Students1">
+    <End Type="OnlineEduModel.Student" Role="Student" Multiplicity="0..1" />
+    <End Type="OnlineEduModel.CourseStudentMap" Role="CourseStudentMap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CourseStudentMap">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

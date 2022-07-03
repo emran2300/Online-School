@@ -141,6 +141,9 @@
     <Compile Include="EF\Cours.cs">
       <DependentUpon>OSMModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\CourseStudentMap.cs">
+      <DependentUpon>OSMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\LoginMatch.cs">
       <DependentUpon>OSMModel.tt</DependentUpon>
     </Compile>
@@ -705,6 +708,9 @@
     <Content Include="Views\Teacher\MyCourseList.cshtml" />
     <Content Include="Views\Teacher\PendingCourseList.cshtml" />
     <Content Include="Views\Teacher\UpdateCourse.cshtml" />
+    <Content Include="Views\Admin\CourseApproval.cshtml" />
+    <Content Include="Views\Student\CourseList.cshtml" />
+    <Content Include="Views\Student\MyCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

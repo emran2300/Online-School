@@ -26,6 +26,14 @@
     <Property Name="Status" Type="int" />
     <Property Name="Teacher_Id" Type="int" />
   </EntityType>
+  <EntityType Name="CourseStudentMaps">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CourseId" Type="int" />
+    <Property Name="StudentId" Type="int" />
+  </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'OnlineEdu.dbo.LoginMatch' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="LoginMatch">
@@ -80,9 +88,36 @@ warning 6002: The table/view 'OnlineEdu.dbo.LoginMatch' does not have a primary 
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_CourseStudentMaps_Courses">
+    <End Role="Courses" Type="Self.Courses" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CourseStudentMaps" Type="Self.CourseStudentMaps" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CourseStudentMaps">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourseStudentMaps_Students1">
+    <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+    <End Role="CourseStudentMaps" Type="Self.CourseStudentMaps" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CourseStudentMaps">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="OnlineEduModelStoreContainer">
     <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseStudentMaps" EntityType="Self.CourseStudentMaps" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LoginMatch" EntityType="Self.LoginMatch" store:Type="Tables" store:Schema="dbo">
@@ -95,6 +130,14 @@ warning 6002: The table/view 'OnlineEdu.dbo.LoginMatch' does not have a primary 
     <AssociationSet Name="FK_Courses_Teachers" Association="Self.FK_Courses_Teachers">
       <End Role="Teachers" EntitySet="Teachers" />
       <End Role="Courses" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseStudentMaps_Courses" Association="Self.FK_CourseStudentMaps_Courses">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="CourseStudentMaps" EntitySet="CourseStudentMaps" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourseStudentMaps_Students1" Association="Self.FK_CourseStudentMaps_Students1">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="CourseStudentMaps" EntitySet="CourseStudentMaps" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

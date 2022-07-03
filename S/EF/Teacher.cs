@@ -11,8 +11,7 @@ namespace S.EF
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Teacher
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,22 +21,13 @@ namespace S.EF
         }
     
         public int Id { get; set; }
-        [Required(ErrorMessage = "Please enter Your Name")]
-        [StringLength(20, ErrorMessage = "Only 20 character are allowed")]
         public string Name { get; set; }
-        [Required]
         public string Address { get; set; }
-        [Required]
         public string Phone { get; set; }
-        [Required]
         public string Bio { get; set; }
-        [Required]
         public string ExpartArea { get; set; }
         public int AccountStatus { get; set; }
-        [EmailAddress]
-        [Required]
         public string Email { get; set; }
-        [Required]
         public string Password { get; set; }
         public string Type { get; set; }
     

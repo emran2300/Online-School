@@ -30,5 +30,6 @@ namespace S.EF
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<LoginMatch> LoginMatches { get; set; }
+        public virtual DbSet<CourseStudentMap> CourseStudentMaps { get; set; }
     }
 }

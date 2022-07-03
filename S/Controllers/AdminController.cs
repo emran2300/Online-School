@@ -45,12 +45,31 @@ namespace S.Controllers
             return View(teachers);
         }
 
+        public ActionResult DeleteTeacher(int id)
+        {
+            var db = new OnlineEduEntities();
+            var teacher = db.Teachers.Find(id);
+            db.Teachers.Remove(teacher);
+            db.SaveChanges();
+
+            return RedirectToAction("TeacherList", "Admin");
+        }
         [HttpGet]
         public ActionResult StudentList()
         {
             var db = new OnlineEduEntities();
             var students = db.Students.ToList();
             return View(students);
+        }
+
+        public ActionResult DeleteStudent(int id)
+        {
+            var db = new OnlineEduEntities();
+            var student = db.Students.Find(id);
+            db.Students.Remove(student);
+            db.SaveChanges();
+
+            return RedirectToAction("StudentList", "Admin");
         }
         [HttpPost]
         public ActionResult StudentList(Student student)
@@ -61,12 +80,12 @@ namespace S.Controllers
         public ActionResult CourseList()
         {
             var db = new OnlineEduEntities();
-            var cours = db.Courses.ToList();
+            var cours = (from c in db.Courses where c.Status == 1 || c.Status == -1 select c).ToList();
             return View(cours);
         }
         [HttpPost]
         public ActionResult CourseList(Cours cours)
-        {            
+        {
             return View();
         }
 
@@ -104,7 +123,7 @@ namespace S.Controllers
         {
             var db = new OnlineEduEntities();
             var cours = db.Courses.Find(id);
-            ViewBag.Teacher = db.Teachers.ToList(); 
+            ViewBag.Teacher = db.Teachers.ToList();
             return View(cours);
         }
         [HttpPost]
@@ -124,15 +143,47 @@ namespace S.Controllers
             return RedirectToAction("CourseList");
         }
 
-        public ActionResult StatusChange()
+        public ActionResult StatusChange(int id)
         {
-            return View();
+            var db = new OnlineEduEntities();
+            var cours = db.Courses.Find(id);
+            if (cours.Status ==1)
+            {
+
+                cours.Status = -1;
+                db.SaveChanges();
+                return RedirectToAction("CourseList");
+            }
+            else if (cours.Status == -1)
+            {
+                cours.Status = 1;
+                db.SaveChanges();
+                return RedirectToAction("CourseList");
+            }
+
+            return RedirectToAction("CourseList");
+        }
+        [HttpGet]
+        public ActionResult CourseApproval()
+        {
+            var db = new OnlineEduEntities();
+            var cours = (from c in db.Courses where c.Status == 0 select c).ToList();
+            return View(cours);
+        }
+        public ActionResult CourseApprovalChange(int id)
+        {
+            var db = new OnlineEduEntities();
+            var cours = db.Courses.Find(id);
+            cours.Status = 1;
+            db.SaveChanges();
+            return RedirectToAction("CourseApproval");
         }
 
+        
         public ActionResult DeleteCourse(int id)
         {
             var db = new OnlineEduEntities();
-            Cours cours = db.Courses.Find(id);
+            var cours = db.Courses.Find(id);
             db.Courses.Remove(cours);
             db.SaveChanges();
 

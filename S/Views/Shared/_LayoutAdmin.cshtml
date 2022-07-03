@@ -127,10 +127,10 @@
                         <!-- User Profile-->
                         <li class="sidebar-item pt-2">
                             @*<a class="sidebar-link waves-effect waves-dark sidebar-link" href="Admin/Index"
-                                   aria-expanded="false">
-                                    <i class="far fa-clock" aria-hidden="true"></i>
-                                    <span class="hide-menu">Dashboard</span>
-                                </a>*@
+               aria-expanded="false">
+                <i class="far fa-clock" aria-hidden="true"></i>
+                <span class="hide-menu">Dashboard</span>
+            </a>*@
                             @Html.ActionLink("Dashboard", "Index", "Admin", new { @class = "sidebar-link waves-effect waves-dark sidebar-link" })
                         </li>
                         <li class="sidebar-item">
@@ -144,6 +144,9 @@
                         </li>
                         <li class="sidebar-item">
                             @Html.ActionLink("Course List", "CourseList", "Admin", new { @class = "sidebar-link waves-effect waves-dark sidebar-link" })
+                        </li>
+                        <li class="sidebar-item">
+                            @Html.ActionLink("Pending Course List", "CourseApproval", "Admin", new { @class = "sidebar-link waves-effect waves-dark sidebar-link" })
                         </li>
 
                     </ul>

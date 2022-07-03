@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OnlineEduModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OnlineEduModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admins">
           <Key>
             <PropertyRef Name="Id" />
@@ -30,6 +30,14 @@
           <Property Name="Enroll" Type="int" Nullable="false" />
           <Property Name="Status" Type="int" />
           <Property Name="Teacher_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="CourseStudentMaps">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseId" Type="int" />
+          <Property Name="StudentId" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'OnlineEdu.dbo.LoginMatch' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -85,9 +93,36 @@ warning 6002: The table/view 'OnlineEdu.dbo.LoginMatch' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CourseStudentMaps_Courses">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CourseStudentMaps" Type="Self.CourseStudentMaps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourseStudentMaps">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseStudentMaps_Students1">
+          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="CourseStudentMaps" Type="Self.CourseStudentMaps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourseStudentMaps">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="OnlineEduModelStoreContainer">
           <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CourseStudentMaps" EntityType="Self.CourseStudentMaps" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoginMatch" EntityType="Self.LoginMatch" store:Type="Tables" store:Schema="dbo">
@@ -101,9 +136,16 @@ warning 6002: The table/view 'OnlineEdu.dbo.LoginMatch' does not have a primary 
             <End Role="Teachers" EntitySet="Teachers" />
             <End Role="Courses" EntitySet="Courses" />
           </AssociationSet>
+          <AssociationSet Name="FK_CourseStudentMaps_Courses" Association="Self.FK_CourseStudentMaps_Courses">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="CourseStudentMaps" EntitySet="CourseStudentMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseStudentMaps_Students1" Association="Self.FK_CourseStudentMaps_Students1">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="CourseStudentMaps" EntitySet="CourseStudentMaps" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OnlineEduModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -133,6 +175,7 @@ warning 6002: The table/view 'OnlineEdu.dbo.LoginMatch' does not have a primary 
           <Property Name="Status" Type="Int32" />
           <Property Name="Teacher_Id" Type="Int32" />
           <NavigationProperty Name="Teacher" Relationship="Self.FK_Courses_Teachers" FromRole="Courses" ToRole="Teachers" />
+          <NavigationProperty Name="CourseStudentMaps" Relationship="OnlineEduModel.FK_CourseStudentMaps_Courses" FromRole="Cours" ToRole="CourseStudentMap" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -146,6 +189,7 @@ warning 6002: The table/view 'OnlineEdu.dbo.LoginMatch' does not have a primary 
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CourseStudentMaps" Relationship="OnlineEduModel.FK_CourseStudentMaps_Students1" FromRole="Student" ToRole="CourseStudentMap" />
         </EntityType>
         <EntityType Name="Teacher">
           <Key>
@@ -197,7 +241,52 @@ warning 6002: The table/view 'OnlineEdu.dbo.LoginMatch' does not have a primary 
             <End Role="Teachers" EntitySet="Teachers" />
             <End Role="Courses" EntitySet="Courses" />
           </AssociationSet>
+          <EntitySet Name="CourseStudentMaps" EntityType="OnlineEduModel.CourseStudentMap" />
+          <AssociationSet Name="FK_CourseStudentMaps_Courses" Association="OnlineEduModel.FK_CourseStudentMaps_Courses">
+            <End Role="Cours" EntitySet="Courses" />
+            <End Role="CourseStudentMap" EntitySet="CourseStudentMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseStudentMaps_Students1" Association="OnlineEduModel.FK_CourseStudentMaps_Students1">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="CourseStudentMap" EntitySet="CourseStudentMaps" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="CourseStudentMap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseId" Type="Int32" />
+          <Property Name="StudentId" Type="Int32" />
+          <NavigationProperty Name="Cours" Relationship="OnlineEduModel.FK_CourseStudentMaps_Courses" FromRole="CourseStudentMap" ToRole="Cours" />
+          <NavigationProperty Name="Student" Relationship="OnlineEduModel.FK_CourseStudentMaps_Students1" FromRole="CourseStudentMap" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_CourseStudentMaps_Courses">
+          <End Type="OnlineEduModel.Cours" Role="Cours" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="OnlineEduModel.CourseStudentMap" Role="CourseStudentMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cours">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourseStudentMap">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseStudentMaps_Students1">
+          <End Type="OnlineEduModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="OnlineEduModel.CourseStudentMap" Role="CourseStudentMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourseStudentMap">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -268,6 +357,15 @@ warning 6002: The table/view 'OnlineEdu.dbo.LoginMatch' does not have a primary 
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CourseStudentMaps">
+            <EntityTypeMapping TypeName="OnlineEduModel.CourseStudentMap">
+              <MappingFragment StoreEntitySet="CourseStudentMaps">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
