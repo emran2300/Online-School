@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace S.Controllers
 {
-    [Admin]
+    //[Admin]
     public class AdminController : Controller
     {
         // GET: Admin
@@ -66,7 +66,7 @@ namespace S.Controllers
         }
         [HttpPost]
         public ActionResult CourseList(Cours cours)
-        {
+        {            
             return View();
         }
 
@@ -75,12 +75,7 @@ namespace S.Controllers
         {
             var db = new OnlineEduEntities();
             var teacher = db.Teachers.ToList();
-
-            dynamic model = new ExpandoObject();
-            model.Teachers = teacher;
-            model.Course = new Cours();
-
-            return View(model);
+            return View(teacher);
         }
         [HttpPost]
         public ActionResult AddCourse(Cours cours)
@@ -102,7 +97,41 @@ namespace S.Controllers
                     return View();
                 }
             }
-            return View();
+            return View(cours);
+        }
+        [HttpGet]
+        public ActionResult UpdateCourse(int id)
+        {
+            var db = new OnlineEduEntities();
+            var cours = db.Courses.Find(id);
+            ViewBag.Teacher = db.Teachers.ToList(); 
+            return View(cours);
+        }
+        [HttpPost]
+        public ActionResult UpdateCourse(Cours c)
+        {
+            var db = new OnlineEduEntities();
+
+            var course = db.Courses.Find(c.Id);
+            course.Status = 1;
+            course.Enroll = 0;
+            course.Name = c.Name;
+            course.Description = c.Description;
+            course.Capacity = c.Capacity;
+            course.Cost = c.Cost;
+            course.Teacher_Id = c.Teacher_Id;
+            db.SaveChanges();
+            return RedirectToAction("CourseList");
+        }
+
+        public ActionResult DeleteCourse(int id)
+        {
+            var db = new OnlineEduEntities();
+            Cours cours = db.Courses.Find(id);
+            db.Courses.Remove(cours);
+            db.SaveChanges();
+
+            return RedirectToAction("CourseList", "Admin");
         }
         public ActionResult Logout()
         {

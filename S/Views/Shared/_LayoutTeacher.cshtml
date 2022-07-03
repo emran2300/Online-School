@@ -121,8 +121,24 @@
                         <li class="sidebar-item">
                             @Html.ActionLink("Profile", "Profile", "Teacher", new { @class = "sidebar-link waves-effect waves-dark sidebar-link" })
                         </li>
+
                         <li class="sidebar-item">
-                            @Html.ActionLink("Course List", "CourseList", "Teacher", new { @class = "sidebar-link waves-effect waves-dark sidebar-link" })
+                            <div class="dropdown">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                   href="#"
+                                   role="button"
+                                   id="dropdownMenuLink"
+                                   data-mdb-toggle="dropdown"
+                                   aria-expanded="false">
+                                    Course List
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li>@Html.ActionLink("Available Courses", "AvailableCourseList", "Teacher", new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("My Courses", "MyCourseList", "Teacher", new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Pending Courses", "PendingCourseList", "Teacher", new { @class = "dropdown-item" })</li>
+                                </ul>
+                            </div>
+
                         </li>
 
                     </ul>
@@ -165,6 +181,9 @@
     <script src="/assets2/plugins/bower_components/chartist/dist/chartist.min.js"></script>
     <script src="/assets2/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
     <script src="/assets2/js/pages/dashboards/dashboard1.js"></script>
+    <!-- MDB -->
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"></script>
 </body>
 
 </html>

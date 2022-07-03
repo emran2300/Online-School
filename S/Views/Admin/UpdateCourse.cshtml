@@ -1,0 +1,65 @@
+﻿@model S.EF.Cours
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/assets2/css/AddCourse.css" rel="stylesheet">
+    <title>Add Course Form</title>
+</head>
+<body>
+
+    <form action="" method="post">
+
+        <h1>Update Course</h1>
+
+        <fieldset>
+
+            <legend><span class="number">1</span>Update Course info</legend>
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="Name" value="@Model.Name">
+
+            <label for="mail">Description:</label>
+            <textarea row="6" name="Description">@Model.Description</textarea>
+
+            <label for="name">Total Sit:</label>
+            <input type="text" id="name" value="@Model.Capacity" name="Capacity">
+
+            <label for="mail">Cost:</label>
+            <input type="text" id="mail" name="Cost" value="@Model.Cost">
+
+            <label for="mail">Teacher:</label>
+            <select class="select" name="Teacher_Id">
+                <option value="">Assign Letter</option>
+                @if (Model.Teacher != null)
+                {
+                    <option selected value="@Model.Teacher.Id">@Model.Teacher.Name</option>
+                }
+
+                @foreach (var t in @ViewBag.Teacher)
+                {
+                    if (@t.Name != @Model.Teacher.Name)
+                    {
+                        <option value="@t.Id">@t.Name</option>
+                    }
+
+                }
+
+
+
+            </select>
+
+        </fieldset>
+
+        <button type="submit">Update</button>
+
+    </form>
+
+</body>
+</html>
+
+

@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace S.Controllers
 {
-    //[StudentAuth]
+    [StudentAuth]
     public class StudentController : Controller
     {
         // GET: Student
@@ -21,7 +21,7 @@ namespace S.Controllers
         {
             int id = Int32.Parse(Session["id"].ToString());
             var db = new OnlineEduEntities();
-            Student student = (from s in db.Students where s.Id == id select s).SingleOrDefault();
+            Student student = db.Students.Find(id);/*(from s in db.Students where s.Id == id select s).SingleOrDefault();*/
             return View(student);
         }
         [HttpPost]

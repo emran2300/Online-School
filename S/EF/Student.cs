@@ -29,6 +29,7 @@ namespace S.EF
         [Required(ErrorMessage = "Please enter Date of Birth")]
         public System.DateTime DateOfBirth { get; set; }
         [EmailAddress]
+        [Required]
         public string Email { get; set; }
 
         [DataType(DataType.Password)]

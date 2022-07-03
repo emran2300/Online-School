@@ -18,8 +18,7 @@ namespace S.Controllers
         [HttpGet]
         public ActionResult TeacherRegistation()
         {
-            Teacher t = new Teacher();
-            return View(t);
+            return View(new Teacher());
         }
         [HttpPost]
         public ActionResult TeacherRegistation(Teacher teacher)
@@ -44,22 +43,19 @@ namespace S.Controllers
                 }
                 
             }
-            return View();
+            return View(teacher);
         }
 
         [HttpGet]
         public ActionResult StudentRegistation()
         {
-            Student s = new Student();
-            return View(s);
+            return View(new Student());
         }
         [HttpPost]
         public ActionResult StudentRegistation(Student student)
         {
             var db = new OnlineEduEntities();
-            student.Type = "student";
-
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
                 try
                 {
@@ -73,9 +69,10 @@ namespace S.Controllers
 
                     return View();
                 }
-
             }
-            return View();
+            return View(student);
+                
+            
         }
 
         [HttpGet]
@@ -117,7 +114,7 @@ namespace S.Controllers
                     return RedirectToAction("Index", "Student");
                 }
             }
-            return View();
+            return View(loginMatch);
         }
         
     }

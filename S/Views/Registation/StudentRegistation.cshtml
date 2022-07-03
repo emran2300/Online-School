@@ -34,12 +34,12 @@
 
                                     <form action="" method="post" class="mx-1 mx-md-4">
                                         <span class="mb-4" style="padding-left:45px">
-                                            @Html.ValidationMessage("Name", new { @class = "text-danger" })<br>
+                                            @Html.ValidationMessage("Name","", new { @class = "text-danger" })<br>
                                         </span>
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <input type="text" class="form-control"  name="Name"/>
+                                                <input type="text" class="form-control"  name="Name" value="@Model.Name"/>
                                                 <label class="form-label" for="form3Example1c">Your Name</label>
                                             </div>
                                         </div>
@@ -50,7 +50,7 @@
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fa-solid fa-map-location fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <input type="text" class="form-control" name="Address" />
+                                                <input type="text" class="form-control" name="Address" value="@Model.Address"/>
                                                 <label class="form-label" for="form3Example1c">Your Address</label>
                                             </div>
                                         </div>
@@ -61,7 +61,7 @@
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fa-solid fa-phone fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <input type="text" class="form-control" name="Phone" />
+                                                <input type="text" class="form-control" name="Phone" value="@Model.Phone"/>
                                                 <label class="form-label" for="form3Example1c">Your Phone</label>
                                             </div>
                                         </div>
@@ -72,7 +72,7 @@
                                         <div class="d-flex flex-row align-items-center mb-4">                       
                                             <i class="fa-solid fa-calendar  me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <input type="date" class="form-control" name="DateOfBirth" />
+                                                <input type="date" class="form-control" name="DateOfBirth" value="@Model.DateOfBirth"/>
                                                 <label class="form-label" for="form3Example1c">Your Date of Birth</label>
                                             </div>
                                         </div>
@@ -85,7 +85,7 @@
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <input type="email" id="form3Example3c" class="form-control" name="Email" />
+                                                <input type="email" id="form3Example3c" class="form-control" name="Email" value="@Model.Email" />
                                                 <label class="form-label" for="form3Example3c">Your Email</label>
 
                                             </div>

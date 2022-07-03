@@ -30,23 +30,42 @@ namespace S.Controllers
             int id = Int32.Parse(Session["id"].ToString());
             var db = new OnlineEduEntities();
             var tc = (from tch in db.Teachers where tch.Id == id select tch).SingleOrDefault();
-            
+            tc.Name = teacher.Name;
+            tc.Address = teacher.Address;   
+            tc.Bio = teacher.Bio;   
+            tc.ExpartArea = teacher.ExpartArea;
+            tc.Phone = teacher.Phone;
             db.SaveChanges();
 
             return RedirectToAction("Profile", "Student");
         }
 
         [HttpGet]
-        public ActionResult CourseList()
+        public ActionResult AvailableCourseList()
         {
             var db = new OnlineEduEntities();
-            var cours = (from c in db.Courses where c.Status == 1 select c).SingleOrDefault();
+            var cours = (from c in db.Courses where c.Status == 1 && c.Teacher_Id == null select c).ToList();
             return View(cours);
         }
         [HttpPost]
         public ActionResult CourseList(Cours cours)
         {
             return View();
+        }
+
+        public ActionResult MyCourseList()
+        {
+            int id = Int32.Parse(Session["id"].ToString());
+            var db = new OnlineEduEntities();
+            var cours = (from c in db.Courses where c.Status == 1 && c.Teacher_Id == id select c).ToList();
+            return View(cours);
+        }
+        public ActionResult PendingCourseList()
+        {
+            int id = Int32.Parse(Session["id"].ToString());
+            var db = new OnlineEduEntities();
+            var cours = (from c in db.Courses where c.Status == 0 && c.Teacher_Id == id select c).ToList();
+            return View(cours);
         }
 
         [HttpGet]
@@ -69,9 +88,9 @@ namespace S.Controllers
             {
                 try
                 {
-                    teacher.Courses.Add(cours);
+                    db.Courses.Add(cours);
                     db.SaveChanges();
-                    return RedirectToAction("CourseList", "Teacher");
+                    return RedirectToAction("PendingCourseList", "Teacher");
                 }
                 catch (Exception)
                 {
@@ -79,6 +98,38 @@ namespace S.Controllers
                 }
             }
             return View();
+        }
+        [HttpGet]
+        public ActionResult UpdateCourse(int id)
+        {
+            var db = new OnlineEduEntities();
+            Cours cours = db.Courses.Find(id);
+            return View(cours);
+        }
+        [HttpPost]
+        public ActionResult UpdateCourse(Cours c)
+        {
+            var db = new OnlineEduEntities();
+            var course = db.Courses.Find(c.Id);
+            course.Status = 0;
+            course.Enroll = 0;
+            course.Name = c.Name;
+            course.Description = c.Description;
+            course.Capacity = c.Capacity;
+            course.Cost = c.Cost;
+
+            db.SaveChanges();
+            return RedirectToAction("PendingCourseList", "Teacher");
+        }
+
+        public ActionResult DeleteCourse(int id)
+        {
+            var db = new OnlineEduEntities();
+            Cours cours = db.Courses.Find(id);
+            db.Courses.Remove(cours);
+            db.SaveChanges();
+
+            return RedirectToAction("PendingCourseList", "Teacher");
         }
         public ActionResult Logout()
         {

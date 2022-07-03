@@ -699,8 +699,12 @@
     <Content Include="Views\Admin\CourseList.cshtml" />
     <Content Include="Views\R.cshtml" />
     <Content Include="Views\Admin\AddCourse.cshtml" />
-    <Content Include="Views\Teacher\CourseList.cshtml" />
+    <Content Include="Views\Teacher\AvailableCourseList.cshtml" />
     <Content Include="Views\Teacher\AddCourse.cshtml" />
+    <Content Include="Views\Admin\UpdateCourse.cshtml" />
+    <Content Include="Views\Teacher\MyCourseList.cshtml" />
+    <Content Include="Views\Teacher\PendingCourseList.cshtml" />
+    <Content Include="Views\Teacher\UpdateCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
