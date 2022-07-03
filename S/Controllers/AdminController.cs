@@ -124,6 +124,11 @@ namespace S.Controllers
             return RedirectToAction("CourseList");
         }
 
+        public ActionResult StatusChange()
+        {
+            return View();
+        }
+
         public ActionResult DeleteCourse(int id)
         {
             var db = new OnlineEduEntities();

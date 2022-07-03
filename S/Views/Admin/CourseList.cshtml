@@ -35,7 +35,6 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="white-box">
-                    <h3 class="box-title">Teacher Table</h3>
                     <div class="table-responsive">
                         <table class="table text-nowrap">
                             <thead>
@@ -61,7 +60,22 @@
                                         <td>@c.Capacity</td>
                                         <td>@c.Cost</td>
                                         <td>@c.Enroll</td>
-                                        <td>@c.Status</td>
+                                        <td>
+                                            @if (@c.Status == 0)
+                                            {
+                                                <span class="badge badge-warning rounded-pill d-inline">Pending</span>
+
+                                            }
+                                            else if (c.Status == 1)
+                                            {
+                                                <span class="badge badge-success rounded-pill d-inline">Approved</span>
+                                            }
+                                            else if (c.Status == -1)
+                                            {
+                                                <span class="badge badge-danger rounded-pill d-inline">Blocked</span>
+                                            }
+
+                                        </td>
                                         @if (c.Teacher != null)
                                         {
                                             <td>@c.Teacher.Name</td>
