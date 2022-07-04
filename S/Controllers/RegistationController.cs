@@ -33,7 +33,7 @@ namespace S.Controllers
                 {
                     db.Teachers.Add(teacher);
                     db.SaveChanges();
-                    return RedirectToAction("LoginRegistation", "Registration");
+                    return RedirectToAction("LoginRegistation", "Registation");
                 }
                 catch (Exception)
                 {

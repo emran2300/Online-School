@@ -37,7 +37,7 @@ namespace S.Controllers
             tc.Phone = teacher.Phone;
             db.SaveChanges();
 
-            return RedirectToAction("Profile", "Student");
+            return RedirectToAction("Profile", "Teacher");
         }
 
         [HttpGet]
