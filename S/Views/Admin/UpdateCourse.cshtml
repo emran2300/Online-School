@@ -38,16 +38,27 @@
                 @if (Model.Teacher != null)
                 {
                     <option selected value="@Model.Teacher.Id">@Model.Teacher.Name</option>
-                }
-
-                @foreach (var t in @ViewBag.Teacher)
-                {
-                    if (@t.Name != @Model.Teacher.Name)
+                    foreach (var t in @ViewBag.Teacher)
                     {
-                        <option value="@t.Id">@t.Name</option>
+                        if (t.Name != Model.Teacher.Name)
+                        {
+                            <option value="@t.Id">@t.Name</option>
+                        }
+
                     }
 
                 }
+                else
+                {
+                    foreach (var t in @ViewBag.Teacher)
+                    {
+                        <option value="@t.Id">@t.Name</option>
+
+                    }
+
+                }
+
+
 
 
 

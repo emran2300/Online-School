@@ -57,7 +57,7 @@ warning 6002: The table/view 'OnlineEdu.dbo.LoginMatch' does not have a primary 
     <Property Name="DateOfBirth" Type="date" Nullable="false" />
     <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Type" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="Teachers">
     <Key>

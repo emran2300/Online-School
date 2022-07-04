@@ -51,9 +51,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                                
                                 @foreach (var c in Model)
                                 {
+                                    
                                     <tr>
                                         <td>@c.Name</td>
                                         <td>@c.Description</td>
@@ -73,25 +74,25 @@
                                         </td>
                                         @if (c.Teacher != null)
                                         {
-                                            <td>@c.Teacher.Name</td>
-                                            @*<td><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">@c.Teacher.Name</a>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Teacher's Info</h5>
-                        </div>
-                        <div class="modal-body">
-                            Name: @c.Teacher.Name. <br />
-                            Address: @c.Teacher.Address <br />
-                            Phone: @c.Teacher.Phone <br />
-                            Bio: @c.Teacher.Bio <br />
-                            Expert: @c.Teacher.ExpartArea <br />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </td>*@
+                                            @*<td>@c.Teacher.Name</td>*@
+                                            <td><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">@c.Teacher.Name</a>
+                                                <div class="modal fade" id="exampleModal@c.Id"+@c.Id tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Teacher's Info</h5>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Name: @c.Teacher.Name. <br />
+                                                                Address: @c.Teacher.Address <br />
+                                                                Phone: @c.Teacher.Phone <br />
+                                                                Bio: @c.Teacher.Bio <br />
+                                                                Expert: @c.Teacher.ExpartArea <br />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               </td>
                                         }
                                         else
                                         {

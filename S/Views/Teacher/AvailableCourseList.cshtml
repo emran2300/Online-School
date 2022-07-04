@@ -54,7 +54,8 @@
                                         <td>@c.Capacity</td>
                                         <td>@c.Cost</td>
                                         <td>@c.Enroll</td>
-                                        <td><a class="btn btn-info" href="">Enroll In this course</a></td>
+                                        <td><a class="btn btn-info" href="EnrollICourse/@c.Id">Enroll In this course</a></td>
+                                        @*<td>@Html.ActionLink("Enroll In this course", "EnrollInCourse", "TeacherController", c.Id, new { @class= "btn btn-info" })</td>*@
                                     </tr>
                                 }
 

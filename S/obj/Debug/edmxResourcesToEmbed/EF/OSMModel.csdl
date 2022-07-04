@@ -39,7 +39,7 @@
     <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="CourseStudentMaps" Relationship="OnlineEduModel.FK_CourseStudentMaps_Students1" FromRole="Student" ToRole="CourseStudentMap" />
   </EntityType>
   <EntityType Name="Teacher">

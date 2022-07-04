@@ -33,7 +33,7 @@ namespace S.Controllers
                 {
                     db.Teachers.Add(teacher);
                     db.SaveChanges();
-                    return RedirectToAction("Index", "Admin");
+                    return RedirectToAction("LoginRegistation", "Registration");
                 }
                 catch (Exception)
                 {
@@ -54,6 +54,7 @@ namespace S.Controllers
         [HttpPost]
         public ActionResult StudentRegistation(Student student)
         {
+            student.Type = "student";   
             var db = new OnlineEduEntities();
             if(ModelState.IsValid)
             {
@@ -61,17 +62,16 @@ namespace S.Controllers
                 {
                     db.Students.Add(student);
                     db.SaveChanges();
-                    return RedirectToAction("Index", "Admin");
+                    return RedirectToAction("LoginRegistation", "Registation");
                 }
                 catch (Exception)
                 {
                     TempData["msg"] = "Email already exist.";
 
-                    return View();
+                    return View(student);
                 }
             }
-            return View(student);
-                
+            return View();   
             
         }
 

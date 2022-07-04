@@ -79,10 +79,9 @@ namespace S.Controllers
         {
             var Id = Int32.Parse(Session["Id"].ToString());
             var db = new OnlineEduEntities();
-            var teacher = (from t in db.Teachers where t.Id == Id select t).SingleOrDefault();
             cours.Status = 0;
             cours.Enroll = 0;
-            
+            cours.Teacher_Id= Id;
 
             if (ModelState.IsValid)
             {
@@ -135,6 +134,15 @@ namespace S.Controllers
         {
             Session.Clear();
             return RedirectToAction("Index", "Home");
+        }
+        public ActionResult EnrollICourse(int id)
+        {
+            var db = new OnlineEduEntities();
+            var course = db.Courses.Find(id);
+            course.Status = 0;
+            course.Teacher_Id = Int32.Parse(Session["id"].ToString());
+            db.SaveChanges();
+            return RedirectToAction("PendingCourseList", "Teacher");
         }
     }
 }

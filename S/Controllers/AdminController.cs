@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace S.Controllers
 {
-    //[Admin]
+    [Admin]
     public class AdminController : Controller
     {
         // GET: Admin
@@ -176,7 +176,7 @@ namespace S.Controllers
             var cours = db.Courses.Find(id);
             cours.Status = 1;
             db.SaveChanges();
-            return RedirectToAction("CourseApproval");
+            return RedirectToAction("CourseApproval","Admin");
         }
 
         
@@ -193,6 +193,15 @@ namespace S.Controllers
         {
             Session.Clear();
             return RedirectToAction("Index", "Home");
+        }
+        public ActionResult DiscardCourse(int id)
+        {
+            var db = new OnlineEduEntities();
+            var course = db.Courses.Find(id);
+            course.Teacher_Id = null;
+            course.Status = 1;
+            db.SaveChanges();
+            return RedirectToAction("CourseList", "Admin");
         }
     }
 }
